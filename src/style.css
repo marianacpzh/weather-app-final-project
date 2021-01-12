@@ -1,3 +1,87 @@
-h1 {
-  color: blue;
+.width {
+  min-width: 550px;
+  max-width: 700px;
+}
+
+body {
+  padding: 50px;
+  background-image: linear-gradient(
+    to top,
+    #ebebeb 0%,
+    #ebebeb 1%,
+    #ebebeb 20%
+  );
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-block-end: 0em;
+}
+
+.fas {
+  color: #fa7f72;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.card {
+  background-image: linear-gradient(
+    to top,
+    #ebebeb 0%,
+    #ebebeb 1%,
+    #ebebeb 20%
+  );
+}
+
+.col-2 {
+  text-align: center;
+}
+
+.form-control {
+  background-image: linear-gradient(
+    to top,
+    #ebebeb 0%,
+    #ebebeb 1%,
+    #ebebeb 20%
+  );
+}
+
+.footer {
+  text-align: center;
+  color: #389393;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  color: black;
+  padding: 0;
+}
+
+button:hover,
+button:focus {
+  background: none;
+}
+
+button:focus {
+  outline: 0px;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
 }
