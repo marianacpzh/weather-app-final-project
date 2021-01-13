@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--bootstrap-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
+    <!--css-->
     <link rel="stylesheet" href="src/style.css" />
+    <!--axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- -->
     <title>weather-app</title>
   </head>
   <body>
@@ -17,22 +22,13 @@
     <div class="width">
       <!--city-->
       <header>
-        <h1 id="changeCity">Zürich</h1>
+        <h1 id="changeCity"></h1>
         <br />
         <!--todaysWheather-->
-        <div class="row">
-          <div class="col-0">
-            <i class="fas fa-circle"></i>
-          </div>
-          <div class="col-0">
-            <h2>13</h2>
-          </div>
-          <div class="col-0">
-            <button id="celsius">°C</button>
-            I
-            <button id="fahrenheit">°F</button>
-          </div>
-        </div>
+        <i class="fas fa-circle" class="mainTodaysIcon"></i>
+        <h2></h2>
+        <button id="celsius" class="unit">°C I</button>
+        <button id="fahrenheit" class="unit">°F</button>
         <!-- -->
         <br />
         <!--todaysMoreInfo-->
@@ -44,9 +40,8 @@
           </div>
           <!--todaysDescription-->
           <div class="col-6">
-            <h5 id="precipitation" class="right-align">Precipitation: 2%</h5>
-            <h5 id="humidity" class="right-align">Humidity: 78%</h5>
-            <h5 id="wind" class="right-align">Wind: 5km/h</h5>
+            <h5 class="right-align">Humidity: <span id="humidity"></span>%</h5>
+            <h5 class="right-align">Wind: <span id="wind"></span>km/h</h5>
           </div>
           <!-- -->
         </div>
@@ -57,46 +52,37 @@
         <div class="card-body">
           <div class="row">
             <!--today-->
-            <div class="col-2">
+            <div class="col-3">
               <h6 id="todayDay">Mo</h6>
               <i id="todaysIcon" class="fas fa-cloud"></i>
               <br />
-              <h6 id="todaysTemperature">13°|7°</h6>
+              <h6 id="todaysTemperature">
+                <span id="todaysTemperatureMin"></span>°|<span
+                  id="todaysTemperatureMax"
+                ></span
+                >°
+              </h6>
             </div>
             <!--todayPlusOne-->
-            <div class="col-2">
+            <div class="col-3">
               <h6 id="todayPlusOne">Mo</h6>
               <i id="todayPlusOneIcon" class="fas fa-cloud"></i>
               <br />
               <h6 id="todayPlusOneTemperature">13°|7°</h6>
             </div>
             <!--todayPlusTwo-->
-            <div class="col-2">
+            <div class="col-3">
               <h6 id="todayPlusTwo">Mo</h6>
               <i id="todayPlusTwoIcon" class="fas fa-cloud-showers-heavy"></i>
               <br />
               <h6 id="todayPlusTwoTemperature">13°|7°</h6>
             </div>
             <!--todayPlusThree-->
-            <div class="col-2">
+            <div class="col-3">
               <h6 id="todayPlusThree">Mo</h6>
               <i id="todayPlusThreeIcon" class="fas fa-cloud-sun-rain"></i>
               <br />
               <h6 id="todayPlusThreeTemperature">13°|7°</h6>
-            </div>
-            <!--todayPlusFour-->
-            <div class="col-2">
-              <h6 id="todayPlusFour">Mo</h6>
-              <i id="todayPlusFourIcon" class="fas fa-snowflake"></i>
-              <br />
-              <h6 id="todayPlusFourTemperature">13°|7°</h6>
-            </div>
-            <!--todayPlusFive-->
-            <div class="col-2">
-              <h6 id="todayPlusFive">Mo</h6>
-              <i id="todayPlusFiveIcon" class="fas fa-bolt"></i>
-              <br />
-              <h6 id="todayPlusFiveTemperature">13°|7°</h6>
             </div>
             <!-- -->
           </div>
@@ -134,8 +120,9 @@
       </footer>
       <!-- -->
     </div>
-    <!-- -->
+    <!--JS-->
     <script src="src/app.js"></script>
+    <!--icon-->
     <script
       src="https://kit.fontawesome.com/b3f341fd2e.js"
       crossorigin="anonymous"

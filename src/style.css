@@ -13,21 +13,26 @@ body {
   );
 }
 
+h2 {
+  display: inline-block;
+  font-size: calc(1.375rem + 1.5vw);
+}
+
 h5 {
   font-size: 1rem;
+}
+
+.fas {
+  color: #fa7f72;
+  font-size: 30px;
+  padding-left: 40px;
 }
 
 h6 {
   margin-bottom: 0px;
   padding-bottom: 0px;
   margin-block-end: 0em;
-}
-
-.fas {
-  color: #fa7f72;
-  font-size: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
+  text-align: center;
 }
 
 .right-align {
@@ -41,6 +46,7 @@ h6 {
     #ebebeb 1%,
     #ebebeb 20%
   );
+  margin-top: 10px;
 }
 
 .col-2 {
@@ -65,23 +71,29 @@ a {
   text-decoration: none;
 }
 
-button {
+button.unit {
+  position: relative;
+  bottom: 10px;
   background: none;
   border: none;
   color: black;
   padding: 0;
 }
 
-button:hover,
-button:focus {
+button.unit:hover,
+button.unit:focus {
   background: none;
 }
 
-button:focus {
+button.unit:focus {
   outline: 0px;
   outline-offset: -4px;
 }
 
-button:active {
+button.unit:active {
   transform: scale(0.99);
+}
+
+h5 {
+  text-transform: capitalize;
 }
