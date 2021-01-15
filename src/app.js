@@ -83,11 +83,15 @@ function handlePosition(position) {
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
+
+  //forecast
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(dispalycurrentCitytForecast);
 }
 
 navigator.geolocation.getCurrentPosition(handlePosition);
 
-//searchCitybutton
+//searchCitybutton `https://api.openweathermap.org/data/2.5/onecall??q=Madrir&exclude=daily&appid=f8b7ad76a785b871420ccfec88454d02&units=metric`;
 
 //searchCitybuttonDate
 
@@ -175,6 +179,9 @@ function search(city) {
   let apiKey = "f8b7ad76a785b871420ccfec88454d02";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(changeShowTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(dispalyForecast);
 }
 
 function handleSubmit(event) {
@@ -186,12 +193,176 @@ function handleSubmit(event) {
 let changeCity = document.querySelector("#searchCity");
 changeCity.addEventListener("submit", handleSubmit);
 
-//forecast
+//currentCitytforecast
 
-//todayPlusOne
+function dispalycurrentCitytForecast(response) {
+  //todaysPlusOne
+  let temMinElement = document.querySelector("#todaysPlusOneTemperatureMin");
+  let temMAxElement = document.querySelector("#todaysPlusOneTemperatureMax");
+  temMinElement.innerHTML = Math.round(response.data.daily[1].temp.min);
+  temMAxElement.innerHTML = Math.round(response.data.daily[1].temp.max);
 
-// todayPlusTwo
+  let dateElement = document.querySelector("#todayPlusOne");
+  dateElement.innerHTML = formatDay(response.data.daily[1].dt * 1000);
+  //icon
+  let listiconElement = document.querySelector("#todayPlusOneIcon");
 
+  listiconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.daily[1].weather[0].icon}@2x.png`
+  );
+
+  //todaysPlusTwo
+
+  let temMinElementPlusTwo = document.querySelector(
+    "#todaysPlusTwoTemperatureMin"
+  );
+  let temMAxElementPlusTwo = document.querySelector(
+    "#todaysPlusTwoTemperatureMax"
+  );
+  temMinElementPlusTwo.innerHTML = Math.round(response.data.daily[2].temp.min);
+  temMAxElementPlusTwo.innerHTML = Math.round(response.data.daily[2].temp.max);
+
+  let dateElementPlusTwo = document.querySelector("#todayPlusTwo");
+  dateElementPlusTwo.innerHTML = formatDay(response.data.daily[2].dt * 1000);
+  //icon
+  let iconElementPlusTwo = document.querySelector("#todayPlusTwoIcon");
+
+  iconElementPlusTwo.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.daily[2].weather[0].icon}@2x.png`
+  );
+  iconElementPlusTwo.setAttribute(
+    "alt",
+    response.data.daily[2].weather[0].description
+  );
+
+  //todaysPlusthree
+  let temMinElementPlusThree = document.querySelector(
+    "#todaysPlusThreeTemperatureMin"
+  );
+  let temMAxElementPlusThree = document.querySelector(
+    "#todaysPlusThreeTemperatureMax"
+  );
+  temMinElementPlusThree.innerHTML = Math.round(
+    response.data.daily[3].temp.min
+  );
+  temMAxElementPlusThree.innerHTML = Math.round(
+    response.data.daily[3].temp.max
+  );
+
+  let dateElementPlusThree = document.querySelector("#todayPlusThree");
+  dateElementPlusThree.innerHTML = formatDay(response.data.daily[3].dt * 1000);
+  //icon
+  let iconElementPlusThree = document.querySelector("#todayPlusThreeIcon");
+
+  iconElementPlusThree.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.daily[3].weather[0].icon}@2x.png`
+  );
+  iconElementPlusThree.setAttribute(
+    "alt",
+    response.data.daily[3].weather[0].description
+  );
+}
+
+//searchCitytforecast
+function dispalyForecast(response) {
+  //todays
+  let temMinElement = document.querySelector("#todaysTemperatureMin");
+  let temMAxElement = document.querySelector("#todaysTemperatureMax");
+  temMinElement.innerHTML = Math.round(response.data.list[0].main.temp_min);
+  temMAxElement.innerHTML = Math.round(response.data.list[0].main.temp_max);
+
+  let dateElement = document.querySelector("#todayDay");
+  dateElement.innerHTML = formatHours(response.data.list[0].dt * 1000);
+  //icon
+  let iconElement = document.querySelector("#TodaysIcon");
+
+  //todaysPlusOne
+  let temMinElementPlusOne = document.querySelector(
+    "#todaysPlusOneTemperatureMin"
+  );
+  let temMAxElementPlusOne = document.querySelector(
+    "#todaysPlusOneTemperatureMax"
+  );
+  temMinElementPlusOne.innerHTML = Math.round(
+    response.data.list[1].main.temp_min
+  );
+  temMAxElementPlusOne.innerHTML = Math.round(
+    response.data.list[1].main.temp_max
+  );
+
+  let dateElementPlusOne = document.querySelector("#todayPlusOne");
+  dateElementPlusOne.innerHTML = formatHours(response.data.list[1].dt * 1000);
+  //icon
+  let iconElementPlusOne = document.querySelector("#todayPlusOneIcon");
+
+  iconElementPlusOne.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[1].weather[0].icon}@2x.png`
+  );
+  iconElementPlusOne.setAttribute(
+    "alt",
+    response.data.list[1].weather[0].description
+  );
+
+  //todaysPlusTwo
+  let temMinElementPlusTwo = document.querySelector(
+    "#todaysPlusTwoTemperatureMin"
+  );
+  let temMAxElementPlusTwo = document.querySelector(
+    "#todaysPlusTwoTemperatureMax"
+  );
+  temMinElementPlusTwo.innerHTML = Math.round(
+    response.data.list[2].main.temp_min
+  );
+  temMAxElementPlusTwo.innerHTML = Math.round(
+    response.data.list[2].main.temp_max
+  );
+
+  let dateElementPlusTwo = document.querySelector("#todayPlusTwo");
+  dateElementPlusTwo.innerHTML = formatHours(response.data.list[2].dt * 1000);
+  //icon
+  let iconElementPlusTwo = document.querySelector("#todayPlusTwoIcon");
+
+  iconElementPlusTwo.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[2].weather[0].icon}@2x.png`
+  );
+  iconElementPlusTwo.setAttribute(
+    "alt",
+    response.data.list[2].weather[0].description
+  );
+
+  //todaysPlusThree
+  let temMinElementPlusThree = document.querySelector(
+    "#todaysPlusThreeTemperatureMin"
+  );
+  let temMAxElementPlusThree = document.querySelector(
+    "#todaysPlusThreeTemperatureMax"
+  );
+  temMinElementPlusThree.innerHTML = Math.round(
+    response.data.list[3].main.temp_min
+  );
+  temMAxElementPlusThree.innerHTML = Math.round(
+    response.data.list[3].main.temp_max
+  );
+
+  let dateElementPlusThree = document.querySelector("#todayPlusThree");
+  dateElementPlusThree.innerHTML = formatHours(response.data.list[3].dt * 1000);
+  //icon
+  let iconElementPlusThree = document.querySelector("#todayPlusThreeIcon");
+
+  iconElementPlusThree.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[3].weather[0].icon}@2x.png`
+  );
+  iconElementPlusThree.setAttribute(
+    "alt",
+    response.data.list[3].weather[0].description
+  );
+}
 // fahrenheit&celsius
 
 function displayFahrenheitTemperature(event) {
