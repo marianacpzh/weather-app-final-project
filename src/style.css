@@ -1,6 +1,6 @@
 .width {
-  min-width: 550px;
-  max-width: 700px;
+  min-width: 500px;
+  max-width: 500px;
 }
 
 body {
@@ -15,11 +15,12 @@ body {
 
 h2 {
   display: inline-block;
-  font-size: calc(1.375rem + 1.5vw);
+  font-size: 2.75rem;
 }
 
 h5 {
   font-size: 1rem;
+  text-transform: capitalize;
 }
 
 .fas {
@@ -65,35 +66,16 @@ h6 {
 .footer {
   text-align: center;
   color: #389393;
-}
-
-a {
   text-decoration: none;
 }
 
-button.unit {
+.unit {
+  text-decoration: none;
   position: relative;
   bottom: 10px;
   background: none;
   border: none;
   color: black;
   padding: 0;
-}
-
-button.unit:hover,
-button.unit:focus {
-  background: none;
-}
-
-button.unit:focus {
-  outline: 0px;
-  outline-offset: -4px;
-}
-
-button.unit:active {
-  transform: scale(0.99);
-}
-
-h5 {
-  text-transform: capitalize;
+  cursor: default;
 }
